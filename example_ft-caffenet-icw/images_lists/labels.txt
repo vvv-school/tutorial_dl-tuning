@@ -1,0 +1,6 @@
+cellphone1 0
+cellphone2 1
+cellphone3 2
+mug1 3
+mug2 4
+mug3 5
