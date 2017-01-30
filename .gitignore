@@ -30,9 +30,10 @@ scripts/src/build*/
 *.caffemodel
 *.binaryproto
 *.mdb
+*.solverstate
 
 # Products of Caffe training
-*/caffe.INFO
+*/caffe.*
 */caffe_INFO_train.txt
 */caffe_INFO_val.txt
 

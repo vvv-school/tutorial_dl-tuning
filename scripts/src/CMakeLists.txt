@@ -5,3 +5,4 @@ cmake_minimum_required(VERSION 2.8.8)
 
 add_subdirectory(compute_mean_vvv17)
 add_subdirectory(create_lmdb_vvv17)
+add_subdirectory(classify_image_list_vvv17)

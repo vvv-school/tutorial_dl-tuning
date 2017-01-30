@@ -10,7 +10,7 @@ solver_mode: GPU
 #### max_epoch=6
 #
 # carry out <max_iter> training iterations
-max_iter=144
+max_iter: 144
 #
 #### n_val=192
 #### batch_size_val=32

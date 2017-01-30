@@ -1,6 +1,6 @@
-cellphone1 0
-cellphone2 1
-cellphone3 2
-mug1 3
-mug2 4
-mug3 5
+mug1 0
+mug2 1
+mug3 2
+remote1 3
+remote2 4
+remote3 5
