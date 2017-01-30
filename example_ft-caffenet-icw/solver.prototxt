@@ -1,24 +1,45 @@
-#carry out <max_iter> iterations (NUM_EPOCHS=<max_iter>/<batch_size_train>)
-max_iter: 42
-#lr decay policy
+# path to the network definition
+net: "train_val.prototxt"
+#
+# CPU or GPU mode
+solver_mode: GPU
+#
+#### n_train=768
+#### batch_size_train=32
+#### iters_per_epoch_train=768/32=24
+#### max_epoch=6
+#
+# carry out <max_iter> training iterations
+max_iter=144
+#
+#### n_val=192
+#### batch_size_val=32
+#### iters_per_epoch_val=192/32=6
+#### test_epoch=1
+#
+# the validation will carry out <test_iter> iterations
+test_iter: 6
+#
+# carry out validation every <test_interval> training iterations
+test_interval: 24
+#
+# display every <display> iterations
+display: 24
+#
+# save model every <snapshot> iterations
+snapshot: 0
+snapshot_prefix: "icw"
+#
+# solver type
+solver_type: SGD
+momentum: 0.9
+#
+# L2 regularization
+weight_decay: 0.0005
+#
+# learning rate decay policy
 base_lr: 0.001
 lr_policy: "poly"
-stepsize: 100000
-gamma: 0.1
 power: 0.5
-#how many forward passes the validation should carry out
-test_iter: 3
-#carry out validation every <test_interval> training iterations
-test_interval: 3
-#display every <display> iterations
-display: 7
-#save model every <snapshot> iterations
-snapshot: 0
-momentum: 0.9
-momentum2: 0.999
-average_loss: 1
-weight_decay: 0.0005
-snapshot_prefix: "icw"
-net: "train_val.prototxt"
-solver_mode: GPU
-solver_type: SGD
+#stepsize: 48
+#gamma: 0.1

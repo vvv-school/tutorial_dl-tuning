@@ -25,3 +25,15 @@ scripts/src/build*/
 
 # Linux temp files
 *~
+
+# Caffe binaries
+*.caffemodel
+*.binaryproto
+*.mdb
+
+# Products of Caffe training
+*/caffe.INFO
+*/caffe_INFO_train.txt
+*/caffe_INFO_val.txt
+
+

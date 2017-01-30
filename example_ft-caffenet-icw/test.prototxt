@@ -5,25 +5,6 @@ layer {
   top: "data"
   top: "label"
   include {
-    phase: TRAIN
-  }
-  transform_param {
-    mirror: true
-    crop_size: 227
-    mean_file: "mean.binaryproto"
-  }
-  data_param {
-    source: "lmdb_train"
-    batch_size: 32
-    backend: LMDB
-  }
-}
-layer {
-  name: "data"
-  type: "Data"
-  top: "data"
-  top: "label"
-  include {
     phase: TEST
   }
   transform_param {
@@ -32,8 +13,8 @@ layer {
     mean_file: "mean.binaryproto"
   }
   data_param {
-    source: "lmdb_val"
-    batch_size: 32
+    source: "lmdb_test"
+    batch_size: 24
     backend: LMDB
   }
 }
