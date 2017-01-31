@@ -2,7 +2,7 @@
 net: "train_val.prototxt"
 #
 # CPU or GPU mode
-solver_mode: GPU
+solver_mode: CPU
 #
 #### n_train=768
 #### batch_size_train=32
@@ -38,7 +38,7 @@ momentum: 0.9
 weight_decay: 0.0005
 #
 # learning rate decay policy
-base_lr: 0.001
+base_lr: 0.000000000000001
 lr_policy: "poly"
 power: 0.5
 #stepsize: 48

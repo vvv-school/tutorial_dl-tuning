@@ -1,6 +1,2 @@
 mug1 0
-mug2 1
-mug3 2
-remote1 3
-remote2 4
-remote3 5
+remote1 1

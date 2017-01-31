@@ -33,8 +33,8 @@ scripts/src/build*/
 *.solverstate
 
 # Products of Caffe training
-*/caffe.*
-*/caffe_INFO_train.txt
-*/caffe_INFO_val.txt
+caffe.*
+caffe_INFO_train.txt
+caffe_INFO_val.txt
 
 

@@ -12,6 +12,9 @@ echo $TUTORIAL_DIR
 # set the name of the example/exercise
 EX=example_ft-caffenet-icw
 echo $EX
+# set the name of the protocol
+PROTOCOL=blr15-fc8N2
+echo $PROTOCOL
 
 ########## CAFFE stuff
 # path to caffe executable
@@ -34,13 +37,10 @@ echo $CLASSIFY_IMAGE_LIST_BIN
 
 ########## SOLVER --> ARCHITECTURE and TEST
 # path to the solver, which points to the train_val.prototxt
-SOLVER_FILE=$TUTORIAL_DIR/$EX/solver.prototxt
+SOLVER_FILE=$TUTORIAL_DIR/$EX/$PROTOCOL/solver.prototxt
 echo $SOLVER_FILE
-# path to test.prototxt
-TEST_FILE=$TUTORIAL_DIR/$EX/test.prototxt
-echo $TEST_FILE
 # path to deploy.prototxt
-DEPLOY_FILE=$TUTORIAL_DIR/$EX/deploy.prototxt
+DEPLOY_FILE=$TUTORIAL_DIR/$EX/$PROTOCOL/deploy.prototxt
 echo $DEPLOY_FILE
 
 ########## TRAIN, VALIDATION and TEST sets: list of images
@@ -60,8 +60,6 @@ BINARYPROTO_MEAN=$TUTORIAL_DIR/$EX/mean.binaryproto
 echo $BINARYPROTO_MEAN
 LMDB_VAL=$TUTORIAL_DIR/$EX/lmdb_val/
 echo $LMDB_VAL
-LMDB_TEST=$TUTORIAL_DIR/$EX/lmdb_test/
-echo $LMDB_TEST
 
 ########## create DATABASES
 rm -rf $LMDB_TRAIN
@@ -69,24 +67,20 @@ $CREATE_LMDB_BIN --resize_width=256 --resize_height=256 --shuffle $IMAGES_DIR $F
 $COMPUTE_MEAN_BIN $LMDB_TRAIN $BINARYPROTO_MEAN
 rm -rf $LMDB_VAL
 $CREATE_LMDB_BIN --resize_width=256 --resize_height=256 --shuffle $IMAGES_DIR $FILELIST_VAL $LMDB_VAL
-rm -rf $LMDB_TEST
-$CREATE_LMDB_BIN --resize_width=256 --resize_height=256 $IMAGES_DIR $FILELIST_TEST $LMDB_TEST
 
 ########## TRAIN!
-cd $TUTORIAL_DIR/$EX
-$CAFFE_BIN train -solver $SOLVER_FILE -weights $WEIGHTS_FILE --log_dir=$TUTORIAL_DIR/$EX
-$PARSE_LOG_SH $TUTORIAL_DIR/$EX/caffe.INFO caffe_INFO_train.txt caffe_INFO_val.txt
 
-########## TEST
-FINAL_MODEL=icw_iter_144.caffemodel
-echo $FINAL_MODEL
+cd $TUTORIAL_DIR/$EX/$PROTOCOL
 
-# using test.prototxt
-# N_iter_testing = n_test / batch_size_test = 240/24
-N_ITER_TESTING=10
-echo $N_ITER_TESTING
-$CAFFE_BIN test -model $TEST_FILE -weights $FINAL_MODEL -iterations $N_ITER_TESTING
+$CAFFE_BIN train -solver $SOLVER_FILE -weights $WEIGHTS_FILE --log_dir=$TUTORIAL_DIR/$EX/$PROTOCOL
 
-# using deploy.prototxt
+$PARSE_LOG_SH $TUTORIAL_DIR/$EX/$PROTOCOL/caffe.INFO $TUTORIAL_DIR/$EX/$PROTOCOL/caffe_INFO_train.txt $TUTORIAL_DIR/$EX/$PROTOCOL/caffe_INFO_val.txt
+
+FINAL_SNAP=$TUTORIAL_DIR/$EX/$PROTOCOL/icw_iter_144.caffemodel
+FINAL_MODEL=$TUTORIAL_DIR/$EX/$PROTOCOL/final.caffemodel
+mv $FINAL_SNAP $FINAL_MODEL
+rm $TUTORIAL_DIR/$EX/$PROTOCOL/icw_iter_144.solverstate
+
+########## TEST using deploy.prototxt
 $CLASSIFY_IMAGE_LIST_BIN $DEPLOY_FILE $FINAL_MODEL $BINARYPROTO_MEAN $LABELS_FILE $IMAGES_DIR $FILELIST_TEST
 
