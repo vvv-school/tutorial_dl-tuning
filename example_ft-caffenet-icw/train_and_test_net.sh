@@ -3,6 +3,7 @@ LAB_DIR=/home/icub/giulia/Dropbox/SANDBOX/VVV17/vvv17-tutorials
 echo $LAB_DIR
 
 ########## iCW directory
+# including the iCW dir and with a '/' at the end (see the example)
 IMAGES_DIR=$LAB_DIR/iCW/
 echo $IMAGES_DIR
 
@@ -13,7 +14,7 @@ echo $TUTORIAL_DIR
 EX=example_ft-caffenet-icw
 echo $EX
 # set the name of the protocol
-PROTOCOL=blr15-fc8N2
+PROTOCOL=blr15-poly
 echo $PROTOCOL
 
 ########## CAFFE stuff
