@@ -55,7 +55,7 @@ FILELIST_TRAIN=${TUTORIAL_DIR}/${EX}/images_lists/train.txt
 echo ${FILELIST_TRAIN}
 FILELIST_VAL=${TUTORIAL_DIR}/${EX}/images_lists/val.txt
 echo ${FILELIST_VAL}
-FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test.txt
+FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test_dummy.txt
 echo ${FILELIST_TEST}
 LABELS_FILE=${TUTORIAL_DIR}/${EX}/images_lists/labels.txt
 echo ${LABELS_FILE}
@@ -99,16 +99,16 @@ cd ${TUTORIAL_DIR}/${EX}/${PROTOCOL}
 ${CAFFE_BIN} train -solver ${SOLVER_FILE} -weights ${WEIGHTS_FILE} --log_dir=${TUTORIAL_DIR}/${EX}/${PROTOCOL}
 
 # parse the output to obtain readable tables
-rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffeINFOtrain.txt
-rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffeINFOval.txt
+#rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffeINFOtrain.txt
+#rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffeINFOval.txt
 # creates caffeINFOtrain.txt and caffeINFOval.txt
 ${PARSE_LOG_SH} ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffe.INFO
 
 # plot the parsed output using caffeINFOtrain.txt and caffeINFOval.txt
 # you can either use gnuplot (after sudo apt-get install gnuplot)
-gnuplot -e "iodir='${TUTORIAL_DIR}/${EX}/${PROTOCOL}'" ${PLOT_LOG_SH}
+#gnuplot -e "iodir='${TUTORIAL_DIR}/${EX}/${PROTOCOL}'" ${PLOT_LOG_SH}
 # or matlab
-matlab -nodisplay -nodesktop -r "addpath('${TUTORIAL_DIR}/scripts'); try plot_log('${TUTORIAL_DIR}/${EX}/${PROTOCOL}'); catch; end; quit"
+#matlab -nodisplay -nodesktop -r "addpath('${TUTORIAL_DIR}/scripts'); try plot_log('${TUTORIAL_DIR}/${EX}/${PROTOCOL}'); catch; end; quit"
 
 # list all snapshots and take the last one
 # (you should have only this one, if you left snapshot_iter=0 in solver.prototxt
