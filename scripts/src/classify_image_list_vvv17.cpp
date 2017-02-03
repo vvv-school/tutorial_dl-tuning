@@ -227,10 +227,10 @@ void Classifier::Preprocess(const cv::Mat& img,
 }
 
 int main(int argc, char** argv) {
-  if (argc != 7) {
+  if (argc != 10) {
     std::cerr << "Usage: " << argv[0]
               << " deploy.prototxt network.caffemodel"
-              << " mean.binaryproto labels.txt list.txt root_dir" << std::endl;
+              << " mean.binaryproto labels.txt root_dir list.txt output_file.txt print_predictions img_delay" << std::endl;
     return 1;
   }
 
@@ -244,7 +244,21 @@ int main(int argc, char** argv) {
 
   string root_dir = argv[5];
   string image_list = argv[6];
+  string output_file = argv[7];
   
+  string print_pred = argv[8];
+  bool print_predictions = false;
+  cv::Scalar text_color = cv::Scalar(0,255,0);
+  int img_delay=-1;
+  int x_text=10, y_text=20;
+  if (print_pred=="true") {
+    std::istringstream ss(argv[9]);
+    if (!(ss >> img_delay))
+        std::cerr << "Invalid number " << argv[9] << '\n';
+    print_predictions=true;
+    cv::namedWindow("Test Image", cv::WINDOW_AUTOSIZE );
+  }
+
   /* Load images. */
   std::ifstream image_stream(image_list.c_str());
   CHECK(image_stream) << "Unable to open images list " << image_list;
@@ -258,7 +272,9 @@ int main(int argc, char** argv) {
     string file;
     int label;
     iss >> file >> label;
-    std::cout << "Prediction for " << file << " ---- : ";
+    
+    if (print_predictions)
+        std::cout << "Prediction for " << file << " ---- : ";
 
     cv::Mat img = cv::imread(root_dir+"/"+file, -1);
     CHECK(!img.empty()) << "Unable to decode image " << file;
@@ -274,15 +290,34 @@ int main(int argc, char** argv) {
         string label_string;
         int label_idx;
         iss >> label_string >> label_idx;
-        std::cout << std::fixed << std::setprecision(4) << p.second << " - " << label_string << std::endl;
+        if (print_predictions) {
+            std::cout << std::fixed << std::setprecision(4) << p.second << " - " << label_string << std::endl;
+            
+            cv::putText(img,label_string.c_str(),cv::Point(x_text,y_text), cv::FONT_HERSHEY_SIMPLEX, 0.8, text_color, 2);
+            
+            cv::imshow("Test Image", img);
+            cv::waitKey(img_delay);
+        }
+        
         if (label_idx==label)
             acc++;
     }
   }
   
   acc = acc/img_count;
+  
+  std::ofstream output_stream(output_file.c_str(), std::ofstream::out | std::ofstream::app);
+  
+  //output_stream << trained_file << std::endl << "tested on " << std::endl << image_list << ": " << std::endl;
+  output_stream << std::fixed << std::setprecision(2) << acc << std::endl;
+  //output_stream << std::endl;
+  
+  output_stream.close();
+  
   std::cout<< std::endl;
-  std::cout << "CLASSIFICATION ACCURACY: " << std::fixed << std::setprecision(2) << acc << std::endl;
+  std::cout << trained_file << std::endl << "tested on " << std::endl << image_list << ": " << std::endl;
+  std::cout << "CLASSIFICATION ACCURACY = " << std::fixed << std::setprecision(2) << acc << std::endl;
+  std::cout<< std::endl;
     
 }
 #else
