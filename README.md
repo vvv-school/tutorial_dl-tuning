@@ -8,7 +8,7 @@ The Deep Learning labs are tested on the provided VM, with the RAM increased to 
 
 #### Get the data
 
-Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1) in a folder of your choice (in the course labs we will suppose `/home/icub/robot-code/datasets/iCW`). Extract the archive in the same folder:
+Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1) in a folder of your choice (in the course labs we will suppose `/home/icub/robot-code/datasets`). Extract the archive in the same folder:
 
 ```sh
 $ cd $ROBOT_CODE/datasets
