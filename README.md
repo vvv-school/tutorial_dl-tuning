@@ -12,7 +12,7 @@ Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/
 
 ```sh
 $ cd $ROBOT_CODE/datasets
-$ wget https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1
+$ wget https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz
 $ tar -zxvf iCW.tar.gz
 ```
 NOTE: if you want to move the dataset in another folder, move the archive and then extract it, since it contains many images.
