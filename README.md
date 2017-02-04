@@ -89,10 +89,10 @@ Check that the paths to the code and data are correct for your system. Specifica
 
 ```sh
 $ cd $LAB_DIR/tutorial_dl-tuning/id_2objects_caffenet
-$ ./train_and_test_net.sh
+$ ./train_and_test_net_tester.sh
 ```
 
-Now seat, and look at the logging messages. The (dummy) training should take less than 5 minutes to complete and you should be able to see something like this:
+Now look at the logging messages. The (dummy) training should take less than 5 minutes to complete and you should be able to see something like this:
 
 ```sh
 I0203 22:10:30.673301  3769 caffe.cpp:251] Starting Optimization
