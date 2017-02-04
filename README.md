@@ -54,7 +54,11 @@ $ git clone https://www.github.com/vvv-school/tutorial_dl-tuning.git
 Compile the scripts that are provided with the repository:
 
 ```sh
-$ cd tutorial_dl-tuning/scripts/src$ mkdir build$ cd build$ ccmake ../$ make
+$ cd tutorial_dl-tuning/scripts/src
+$ mkdir build
+$ cd build
+$ ccmake ../
+$ make
 ```
 
 NOTES: 
@@ -66,11 +70,11 @@ NOTES:
 
 #### Configure the fine-tuning script to run on your laptop:
 
-Open the `train_and_test_net.sh` script with a text editor, e.g.:
+Open the `train_and_test_net_tester.sh` script with a text editor, e.g.:
 
 ```sh
 $ cd $LAB_DIR/tutorial_dl-tuning/id_2objects_caffenet
-$ gedit train_and_test_net.sh
+$ gedit train_and_test_net_tester.sh
 ```
 
 Check that the paths to the code and data are correct for your system. Specifically:
@@ -119,8 +123,3 @@ I0203 22:12:03.345954  3769 caffe.cpp:254] Optimization Done.
 ```
 
 Then you should also be able to see 6 images displayed one after the other. If you read at the very end the message `***** Done! *****` then you are ready for the labs! Let us know if something does not work.
-
-
-
-
-
