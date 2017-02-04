@@ -4,7 +4,7 @@
 
 #### Increase the RAM of the Virtual Machine
 
-The Deep Learning labs are tested on the provided VM, with the RAM increased to 2048 MB. Increase the RAM of your VM at least to this value in order to run the exercises. Let us know if you have problems with this requirement.
+The Deep Learning labs are tested on the provided VM, with the RAM increased to 4096 MB (and 2 CPUs). Increase the RAM of your VM to this value in order to run the exercises (also 3GB may be sufficient, whereas if you have problems with this requirement let us know and we will find a solution!).
 
 #### Get the data
 
