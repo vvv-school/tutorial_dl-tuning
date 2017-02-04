@@ -55,7 +55,7 @@ FILELIST_TRAIN=${TUTORIAL_DIR}/${EX}/images_lists/train.txt
 echo ${FILELIST_TRAIN}
 FILELIST_VAL=${TUTORIAL_DIR}/${EX}/images_lists/val.txt
 echo ${FILELIST_VAL}
-FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test.txt
+FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test_dummy.txt
 echo ${FILELIST_TEST}
 LABELS_FILE=${TUTORIAL_DIR}/${EX}/images_lists/labels.txt
 echo ${LABELS_FILE}
@@ -78,7 +78,7 @@ ${CREATE_LMDB_BIN} --resize_width=256 --resize_height=256 --shuffle ${IMAGES_DIR
 ########## fine-tuning PROTOCOL
 # it is the name of the directory where you have your 
 # train_val.prototxt, solver.prototxt and deploy.prototxt
-PROTOCOL="all-0"
+PROTOCOL="all-0-tester"
 
 ########## SOLVER --> ARCHITECTURE and TEST
 # path to the solver.prototxt, which points to the train_val.prototxt

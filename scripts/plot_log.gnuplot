@@ -27,7 +27,7 @@
 
 reset
 set terminal png
-set output "caffeINFO_acc.png"
+set output iodir."/caffeINFO_acc.png"
 set style data points
 set key right
 set autoscale xy
@@ -35,13 +35,14 @@ set autoscale xy
 set title "Accuracy vs. Training Iterations"
 set xlabel "Training Iterations"
 set ylabel "Accuracy"
-plot iodir."/caffeINFOtrain.txt" using 1:2 title "train_acc" pt 7 ps 1, \
-     iodir."/caffeINFOval.txt" using 1:2 title "val_acc" pt 7 ps 1,
-set grid
+set grid xtics lt 0 lw 1 lc rgb "#bbbbbb"
+set grid ytics lt 0 lw 1 lc rgb "#bbbbbb"
+plot iodir."/caffeINFOtrain.txt" using 1:2 title "train acc" pt 7 ps 1, \
+     iodir."/caffeINFOval.txt" using 1:2 title "val acc" pt 7 ps 1,
 
 reset
 set terminal png
-set output "caffeINFO_loss.png"
+set output iodir."/caffeINFO_loss.png"
 set style data points
 set key right
 set autoscale xy
@@ -49,13 +50,14 @@ set autoscale xy
 set title "Loss vs. Training Iterations"
 set xlabel "Training Iterations"
 set ylabel "Loss"
-plot iodir."/caffeINFOtrain.txt" using 1:3 title "train_loss" pt 7 ps 1, \
-     iodir."/caffeINFOval.txt" using 1:3 title "val_loss" pt 7 ps 1,
-set grid
+set grid xtics lt 0 lw 1 lc rgb "#bbbbbb"
+set grid ytics lt 0 lw 1 lc rgb "#bbbbbb"
+plot iodir."/caffeINFOtrain.txt" using 1:3 title "train loss" pt 7 ps 1, \
+     iodir."/caffeINFOval.txt" using 1:3 title "val loss" pt 7 ps 1,
 
 reset
 set terminal png
-set output "caffeINFO_lr.png"
+set output iodir."/caffeINFO_lr.png"
 set style data points
 set key right
 set autoscale xy
@@ -63,5 +65,7 @@ set autoscale xy
 set title "Learning Rate vs. Training Iterations"
 set xlabel "Training Iterations"
 set ylabel "Learning Rate"
+set grid xtics lt 0 lw 1 lc rgb "#bbbbbb"
+set grid ytics lt 0 lw 1 lc rgb "#bbbbbb"
 plot iodir."/caffeINFOval.txt" using 1:4 title "lr" pt 7 ps 1
-set grid
+

@@ -1,6 +1,6 @@
-mug/mug1/MIX/day5/left/00000779.jpg 0
-mug/mug1/MIX/day5/left/00000619.jpg 0
-mug/mug1/MIX/day5/left/00000635.jpg 0
+mug/mug1/MIX/day5/left/00000592.jpg 0
+mug/mug1/MIX/day5/left/00000593.jpg 0
+mug/mug1/MIX/day5/left/00000594.jpg 0
+remote/remote1/MIX/day7/left/00000719.jpg 1
 remote/remote1/MIX/day7/left/00000720.jpg 1
-remote/remote1/MIX/day7/left/00001076.jpg 1
-remote/remote1/MIX/day7/left/00000777.jpg 1
+remote/remote1/MIX/day7/left/00000721.jpg 1

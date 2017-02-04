@@ -34,7 +34,9 @@ scripts/src/build*/
 
 # Products of Caffe training
 caffe.*
-caffe_INFO_train.txt
-caffe_INFO_val.txt
+caffeINFOtrain.txt
+caffeINFOval.txt
+test_acc_*.txt
 
-
+# Images
+*.png

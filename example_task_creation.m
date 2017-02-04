@@ -1,4 +1,3 @@
-
 %% Example script to generate a recognition task
 
 % this script uses a configuration file 
@@ -9,7 +8,7 @@
 % (see e.g. ../id_10objects_ft_caffenet_icw/images_lists)
 
 % Set the root folder of the iCW dataset
-IMAGES_DIR='/home/icub/Downloads/iCW';
+IMAGES_DIR='/home/icub/robot-code/datasets/iCW';
 
 % Set the path to current repository
 TUTORIAL_DIR = '/home/icub/vvv17_deep-learning/tutorial_dl-tuning';
