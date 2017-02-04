@@ -55,6 +55,7 @@ $ git clone https://www.github.com/vvv-school/tutorial_dl-tuning.git
 Compile the scripts that are provided with the repository:
 
 ```sh
+$ cd $LAB_DIR
 $ cd tutorial_dl-tuning/scripts/src
 $ mkdir build
 $ cd build
