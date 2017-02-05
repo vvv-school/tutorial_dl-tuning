@@ -4,14 +4,15 @@
 
 #### Increase the RAM of the Virtual Machine
 
-The Deep Learning labs are tested on the provided VM, with the RAM increased to 2048 MB. Increase the RAM of your VM at least to this value in order to run the exercises. Let us know if you have problems with this requirement.
+The Deep Learning labs are tested on the provided VM, with the RAM increased to 4096 MB (and 2 CPUs). Increase the RAM of your VM to this value in order to run the exercises (also 3GB may be sufficient, whereas if you have problems with this requirement let us know and we will find a solution!).
 
 #### Get the data
 
-Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1) in a folder of your choice (in the course labs we will suppose `/home/icub/robot-code/Datasets/iCW`). Extract the archive in the same folder:
+Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1) in a folder of your choice (in the course labs we will suppose `/home/icub/robot-code/datasets` the default one used in the VVV school).
 
 ```sh
-$ wget https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1
+$ cd $ROBOT_CODE/datasets
+$ wget https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz
 $ tar -zxvf iCW.tar.gz
 ```
 NOTE: if you want to move the dataset in another folder, move the archive and then extract it, since it contains many images.
@@ -54,6 +55,7 @@ $ git clone https://www.github.com/vvv-school/tutorial_dl-tuning.git
 Compile the scripts that are provided with the repository:
 
 ```sh
+$ cd $LAB_DIR
 $ cd tutorial_dl-tuning/scripts/src
 $ mkdir build
 $ cd build
