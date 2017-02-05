@@ -116,8 +116,11 @@ FINAL_SNAP=${TUTORIAL_DIR}/${EX}/${PROTOCOL}/${snap_list[0]}
 FINAL_MODEL=${TUTORIAL_DIR}/${EX}/${PROTOCOL}/final.caffemodel
 mv ${FINAL_SNAP} ${FINAL_MODEL}
 rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/icw_iter_*.solverstate
+rm ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/icw_iter_*.caffemodel
 
 ########## TEST!
+
+FINAL_MODEL=${TUTORIAL_DIR}/${EX}/${PROTOCOL}/final.caffemodel
 
 # choose whether you want to print and visualize the prediction for each tested image
 # the string can be either "true" or "false"
