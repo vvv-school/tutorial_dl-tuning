@@ -7,10 +7,10 @@ solver_mode: CPU
 #### n_train=768
 #### batch_size_train=32
 #### iters_per_epoch_train=768/32=24
-#### max_epoch=12
+#### max_epoch=6
 #
 # carry out <max_iter> training iterations
-max_iter: 288
+max_iter: 144
 #
 #### n_val=192
 #### batch_size_val=32
