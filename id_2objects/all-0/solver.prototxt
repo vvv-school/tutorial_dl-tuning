@@ -4,27 +4,27 @@ net: "train_val.prototxt"
 # CPU or GPU mode
 solver_mode: CPU
 #
-#### n_train=768
+#### n_train=320
 #### batch_size_train=32
-#### iters_per_epoch_train=768/32=24
+#### iters_per_epoch_train=320/32=10
 #### max_epoch=6
 #
 # carry out <max_iter> training iterations
-max_iter: 144
+max_iter: 60
 #
-#### n_val=192
+#### n_val=80
 #### batch_size_val=32
-#### iters_per_epoch_val=192/32=6
+#### iters_per_epoch_val=80/32=3
 #### test_epoch=1
 #
 # the validation will carry out <test_iter> iterations
-test_iter: 6
+test_iter: 3
 #
 # carry out validation every <test_interval> training iterations
-test_interval: 24
+test_interval: 10
 #
 # display every <display> iterations
-display: 24
+display: 10
 #
 # save model every <snapshot> iterations
 snapshot: 0

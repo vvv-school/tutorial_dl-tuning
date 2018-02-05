@@ -1,2 +1,0 @@
-mug1 0
-remote1 1

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Copyright: (C) 2017 iCub Facility - Istituto Italiano di Tecnologia
+# Copyright: (C) 2018 iCub Facility - Istituto Italiano di Tecnologia
 # Authors: Giulia Pasquale <giulia.pasquale@iit.it>
 # CopyPolicy: Released under the terms of the GNU GPL v3.0.
 
 ########## root directory
 # set the directory where you should have all deep learning tutorials/assignments
-LAB_DIR=/home/icub/vvv17_deep-learning
+LAB_DIR=/home/icub/robot-code/dl-lab
 echo ${LAB_DIR}
 
 ########## iCW dataset directory
@@ -35,7 +35,7 @@ echo ${CREATE_LMDB_BIN}
 ########## directory of this REPOSITORY and this EXERCISE
 TUTORIAL_DIR=${LAB_DIR}/tutorial_dl-tuning
 echo ${TUTORIAL_DIR}
-EX=id_2objects_caffenet
+EX=id_2objects
 echo ${EX}
 
 ########## SCRIPTS
@@ -47,7 +47,7 @@ echo ${PARSE_LOG_SH}
 PLOT_LOG_SH=${TUTORIAL_DIR}/scripts/plot_log.gnuplot
 echo ${PLOT_LOG_SH}
 
-CLASSIFY_IMAGE_LIST_BIN=${TUTORIAL_DIR}/scripts/src/build/classify_image_list_vvv17
+CLASSIFY_IMAGE_LIST_BIN=${TUTORIAL_DIR}/scripts/src/build/classify_image_list_vvv
 echo ${CLASSIFY_IMAGE_LIST_BIN}
 
 ########## TRAIN, VALIDATION and TEST sets: list of images
@@ -78,7 +78,7 @@ ${CREATE_LMDB_BIN} --resize_width=256 --resize_height=256 --shuffle ${IMAGES_DIR
 ########## fine-tuning PROTOCOL
 # it is the name of the directory where you have your 
 # train_val.prototxt, solver.prototxt and deploy.prototxt
-PROTOCOL="all-0"
+PROTOCOL="all-0-tester"
 
 ########## SOLVER --> ARCHITECTURE and TEST
 # path to the solver.prototxt, which points to the train_val.prototxt
@@ -104,10 +104,7 @@ ${CAFFE_BIN} train -solver ${SOLVER_FILE} -weights ${WEIGHTS_FILE} --log_dir=${T
 ${PARSE_LOG_SH} ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/caffe.INFO
 
 # plot the parsed output using caffeINFOtrain.txt and caffeINFOval.txt
-# you can either use gnuplot (after sudo apt-get install gnuplot)
 gnuplot -e "iodir='${TUTORIAL_DIR}/${EX}/${PROTOCOL}'" ${PLOT_LOG_SH}
-# or matlab
-matlab -nodisplay -nodesktop -r "addpath('${TUTORIAL_DIR}/scripts'); try plot_log('${TUTORIAL_DIR}/${EX}/${PROTOCOL}'); catch; end; quit"
 
 # list all snapshots and take the last one
 # (you should have only this one, if you left snapshot_iter=0 in solver.prototxt
@@ -131,7 +128,7 @@ IMG_DELAY="500"
 # on day1
 ${CLASSIFY_IMAGE_LIST_BIN} ${DEPLOY_FILE} ${FINAL_MODEL} ${BINARYPROTO_MEAN} \
                            ${LABELS_FILE} ${IMAGES_DIR} ${FILELIST_TEST} \
-                           ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/test_acc_day1.txt ${PRINT_PREDICTIONS} ${IMG_DELAY}
+                           ${TUTORIAL_DIR}/${EX}/${PROTOCOL}/test_acc.txt ${PRINT_PREDICTIONS} ${IMG_DELAY}
 
 echo "********* Done! *********"
 
