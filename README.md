@@ -4,7 +4,7 @@ Contents:
 
 * [Get ready for the afternoon](#get-ready-for-the_afternoon)
 * [Get ready for this tutorial](#get-ready-for-this-tutorial)
-* [Start the tutorial: run the tester](#start-the_tutorial-run-the-tester)
+* [Start the tutorial: run the tester](#start-the-tutorial-run-the-tester)
 * [Complete the tutorial: run fine-tuning](#complete-the-tutorial-run-fine-tuning)
 * [Bonus question](#bonus-question)
 
