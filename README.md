@@ -2,13 +2,13 @@
 
 Contents:
 
-1. [Get ready for the afternoon](get-ready-for-the-afternoon)
-2. [Get ready for this tutorial](get-ready-for-this-tutorial)
-3. [Start the tutorial: run the tester](start-the-tutorial-run-the-fine-tuning-tester)
-4. [Complete the tutorial: run fine-tuning](complete-the-tutorial-run-fine-tuning)
-5. [Bonus question](bonus-question)
+1. [Get ready for the afternoon](#1_get_ready_for_the_afternoon)
+2. [Get ready for this tutorial](#2_get_ready_for_this_tutorial)
+3. [Start the tutorial: run the tester](#2_start_the_tutorial_run_the_fine_tuning_tester)
+4. [Complete the tutorial: run fine-tuning](#4_complete_the_tutorial_run_fine_tuning)
+5. [Bonus question](#5_bonus_question)
 
-## Get ready for the afternoon
+## 1. Get ready for the afternoon
 
 #### Check the RAM of the Virtual Machine (VM)
 
@@ -43,7 +43,7 @@ $ sudo apt install python-pip
 $ pip install easydict
 ```
 
-## Get ready for this tutorial
+## 2. Get ready for this tutorial
 
 #### Get the code
 
@@ -73,7 +73,7 @@ NOTES:
 3. check that `Caffe_DIR` is set to your `caffe/build/install` directory (on the VM setup this is `/home/icub/robot-code/caffe/build/install`)
 4. check that `OpenCV_DIR` points to an `OpenCV` installation (on the VM this is `opt/ros/kinetic/share/OpenCV-3.3.1`)
 
-## Start the tutorial: run the fine-tuning tester
+## 3. Start the tutorial: run the fine-tuning tester
 
 Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
 
@@ -138,7 +138,7 @@ I0203 22:12:03.345954  3769 caffe.cpp:254] Optimization Done.
 
 Then you should also be able to see some images displayed one after the other. If you read at the very end the message `***** Done! *****`, then you are ready for fine-tuning networks on your machine! Let us know if something does not work.
 
-## Complete the tutorial: run fine-tuning
+## 4. Complete the tutorial: run fine-tuning
 
 This is the actual training that we are going to run. The procedure is the same that you followed to run the ''tester'' script at point 3. Therefore:
 
