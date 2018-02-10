@@ -2,13 +2,13 @@
 
 Contents:
 
-1. [Get ready for the afternoon](#1_get_ready_for_the_afternoon)
-2. [Get ready for this tutorial](#2_get_ready_for_this_tutorial)
-3. [Start the tutorial: run the tester](#2_start_the_tutorial_run_the_fine_tuning_tester)
-4. [Complete the tutorial: run fine-tuning](#4_complete_the_tutorial_run_fine_tuning)
-5. [Bonus question](#5_bonus_question)
+1. [Get ready for the afternoon](#get_ready_for_the_afternoon)
+2. [Get ready for this tutorial](#get_ready_for_this_tutorial)
+3. [Start the tutorial: run the tester](#start_the_tutorial_run_the_fine_tuning_tester)
+4. [Complete the tutorial: run fine-tuning](#complete_the_tutorial_run_fine_tuning)
+5. [Bonus question](#bonus_question)
 
-## 1. Get ready for the afternoon
+## Get ready for the afternoon
 
 #### Check the RAM of the Virtual Machine (VM)
 
@@ -20,7 +20,7 @@ You should have already extracted the iCW (iCubWorld) dataset, otherwise do it n
 
 ```sh
 $ cd $ROBOT_CODE/datasets
-$ tar -zxvf iCW.tar.gz
+$ tar -zxvf iCW-vvv18.tar.gz
 ```
 NOTE: if you want to move the dataset in another folder, move the archive and then extract it, since it contains many images!
 
@@ -43,7 +43,7 @@ $ sudo apt install python-pip
 $ pip install easydict
 ```
 
-## 2. Get ready for this tutorial
+## Get ready for this tutorial
 
 #### Get the code
 
@@ -73,7 +73,7 @@ NOTES:
 3. check that `Caffe_DIR` is set to your `caffe/build/install` directory (on the VM setup this is `/home/icub/robot-code/caffe/build/install`)
 4. check that `OpenCV_DIR` points to an `OpenCV` installation (on the VM this is `opt/ros/kinetic/share/OpenCV-3.3.1`)
 
-## 3. Start the tutorial: run the fine-tuning tester
+## Start the tutorial: run the fine-tuning tester
 
 Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
 
@@ -138,7 +138,7 @@ I0203 22:12:03.345954  3769 caffe.cpp:254] Optimization Done.
 
 Then you should also be able to see some images displayed one after the other. If you read at the very end the message `***** Done! *****`, then you are ready for fine-tuning networks on your machine! Let us know if something does not work.
 
-## 4. Complete the tutorial: run fine-tuning
+## Complete the tutorial: run fine-tuning
 
 This is the actual training that we are going to run. The procedure is the same that you followed to run the ''tester'' script at point 3. Therefore:
 
@@ -181,7 +181,7 @@ Here you can find:
 2. `caffeINFotrain.txt` and `caffeINFOval.txt`, together with `caffeINFO_loss.png`, `caffeINFO_acc.png` and `caffeINFO_lr.png` are the result of parsing the output log file produced by Caffe (`caffe.INFO`) and contain, respectively in the form of tables or pictures, the train/validation performances achieved during training. Note that this information is produced by Caffe more or less frequently depending on the `display` parameter set in the `solver.prototxt`.
 2. `test_acc.txt`: **accuracy achieved by testing the trained model on the test set** (computed based on the predictions that were also displayed)
 
-## 5. Bonus question
+## Bonus question
 
 Consider the training protocols that we adopted in the ''tester'' and then in the actual fine-tuning of the network, by comparing the `solver.prototxt` and the `train_val.prototxt` files used in the two cases (folders `all-0-tester` and `all-3`).
 
