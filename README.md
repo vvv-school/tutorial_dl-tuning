@@ -73,7 +73,7 @@ NOTES:
 3. check that `Caffe_DIR` is set to your `caffe/build/install` directory (on the VM setup this is `/home/icub/robot-code/caffe/build/install`)
 4. check that `OpenCV_DIR` points to an `OpenCV` installation (on the VM this is `opt/ros/kinetic/share/OpenCV-3.3.1`)
 
-## Start the tutorial: run the fine-tuning tester
+## Start the tutorial: run the tester
 
 Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
 
