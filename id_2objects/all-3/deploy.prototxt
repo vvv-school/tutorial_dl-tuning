@@ -1,3 +1,9 @@
+###################################################
+## search for occurrencies of the ### character sequence in this file
+## to quickly find parameters that you must pay attention to
+## NOTE that this file must match the train_val.prototxt
+## i.e. layers with same names and same shape!
+###################################################
 name: "CaffeNet_iCubWorld"
 layer {
   name: "data"
@@ -198,11 +204,16 @@ layer {
   }
 }
 layer {
+  # ### note that here we rename the last layer to fc8N
+  # to match the name of the new learned layer specified in the train_val.prototxt
   name: "fc8N"
   type: "InnerProduct"
   bottom: "fc7"
   top: "fc8N"
   inner_product_param {
+    # ### note that this must be set to the number of classes to discriminate
+    # as in the train_val.prototxt
+    # this is the only parameter that you will need to set in the assignment!
     num_output: 2
   }
 }

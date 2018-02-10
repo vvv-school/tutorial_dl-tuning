@@ -1,3 +1,4 @@
+mug/mug1/MIX/day6/left/00009846.jpg 0
 mug/mug1/MIX/day6/left/00009848.jpg 0
 mug/mug1/MIX/day6/left/00009850.jpg 0
 mug/mug1/MIX/day6/left/00009852.jpg 0
@@ -47,7 +48,7 @@ mug/mug1/MIX/day6/left/00009938.jpg 0
 mug/mug1/MIX/day6/left/00009940.jpg 0
 mug/mug1/MIX/day6/left/00009942.jpg 0
 mug/mug1/MIX/day6/left/00009944.jpg 0
-mug/mug1/MIX/day6/left/00009946.jpg 0
+sodabottle/sodabottle1/MIX/day2/left/00005476.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005478.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005480.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005482.jpg 1
@@ -97,4 +98,3 @@ sodabottle/sodabottle1/MIX/day2/left/00005568.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005570.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005572.jpg 1
 sodabottle/sodabottle1/MIX/day2/left/00005574.jpg 1
-sodabottle/sodabottle1/MIX/day2/left/00005576.jpg 1

@@ -1,3 +1,7 @@
+###################################################
+## search for occurrencies of the ### character sequence in this file
+## to quickly find parameters that you must pay attention to
+###################################################
 name: "CaffeNet_iCubWorld"
 layer {
   name: "data"
@@ -341,19 +345,33 @@ layer {
   }
 }
 layer {
+  # ### note that here we rename the last layer to fc8N
+  # (it was fc8 in the original model trained on ImageNet)
+  # because we are reshaping it by setting a different number of units
+  # and hence we will learn it from scratch
   name: "fc8N"
   type: "InnerProduct"
   bottom: "fc7"
   top: "fc8N"
   param {
+    # ### the following parameter means that the learning rate of this layer
+    # is multiplied by a factor of <lr_mult> (1 in this case)
+    # with respect to the base learning rate specified in the solver.prototxt (base_lr parameter)
+    # because we are learning from scratch and we want to modify the weights of this layer
+    # differently from all previous layers (for which, if you check, <base_lr> is set to 0)
     lr_mult: 1
     decay_mult: 1
   }
   param {
+    # ### this parameter specifies the same as above, but for the biases
+    # ''usually'' the learning rate of the biases is twice the learning rate of the weights
     lr_mult: 2
     decay_mult: 0
   }
   inner_product_param {
+    # ### the following parameter is the number of classes
+    # that you want to discriminate
+    # this is the only parameter that you will need to set in the assignment!
     num_output: 2
     weight_filler {
       type: "gaussian"

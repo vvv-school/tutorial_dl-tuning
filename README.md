@@ -1,52 +1,56 @@
-# Fine-tuning deep CNNs with Caffe
+# Fine-tuning a deep CNN with Caffe
 
-## Get ready for the afternoon
+Contents:
 
-#### Increase the RAM of the Virtual Machine
+1. [Get ready for the afternoon](get-ready-for-the-afternoon)
+2. [Get ready for this tutorial](get-ready-for-this-tutorial)
+3. [Start the tutorial: run the tester](start-the-tutorial-run-the-fine-tuning-tester)
+4. [Complete the tutorial: run fine-tuning](complete-the-tutorial-run-fine-tuning)
+5. [Bonus question](bonus-question)
 
-The Deep Learning labs are tested on the provided VM, with the RAM increased to 4096 MB (and 2 CPUs). Increase the RAM of your VM to this value in order to run the exercises (also 3GB may be sufficient, whereas if you have problems with this requirement let us know and we will find a solution!).
+## 1. Get ready for the afternoon
 
-#### Get the data
+#### Check the RAM of the Virtual Machine (VM)
 
-Download the iCubWorld (iCW) dataset from this [link](https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz?dl=1) in a folder of your choice (in the course labs we will suppose `/home/icub/robot-code/datasets` the default one used in the VVV school).
+The deep learning labs are tested on the provided VM with the RAM set to 4096 MB (and 2 CPUs). Increase the RAM of your VM to this value in order to run the exercises (also 3GB may be sufficient, but if you have problems with this requirement let us know and we will find a solution!).
+
+#### Check the data
+
+You should have already extracted the iCW (iCubWorld) dataset, otherwise do it now:
 
 ```sh
 $ cd $ROBOT_CODE/datasets
-$ wget https://data.mendeley.com/datasets/g7vvyk6gds/1/files/ffe5bac4-1ded-4bfd-a595-ef5393e69304/iCW.tar.gz
 $ tar -zxvf iCW.tar.gz
 ```
-NOTE: if you want to move the dataset in another folder, move the archive and then extract it, since it contains many images.
+NOTE: if you want to move the dataset in another folder, move the archive and then extract it, since it contains many images!
 
-#### Create a folder for the Deep Learning course
+#### Create a folder for the deep learning repositories that you will clone
 
-Create a folder of your choice where you will clone all the tutorials and assignments of the Deep Learning course: we will suppose this is
+Create a folder of your choice where you will clone all the tutorials and assignments of this course: we will suppose this is
 
 ```sh
-$ LAB_DIR=/home/icub/vvv17_deep-learning
-$ mkdir $LAB_DIR
+$ cd $ROBOT_CODE
+$ mkdir dl-lab
 ```
 You can create the same if you use the VM, otherwise you will be able to change it the code that will be used.
 
-#### Get gnuplot and/or MATLAB
+#### Get missing Python packages
 
-Since you are supposed to have MATLAB for other courses (e.g. Machine Learning), in these labs we will provide some MATLAB scripts for plotting results and generating some data.
-While being useful, MATLAB is not mandatory for completing the labs.
+You should already have all required dependencies for running the labs but these ones, which you must install now:
 
-We provide also an equivalent `gnuplot` script to plot results, which can be used in place of MATLAB. You can install `gnuplot` by doing:
 ```
-$ sudo apt-get install gnuplot
+$ sudo apt install python-pip
+$ pip install easydict
 ```
 
-Still, if you have neither MATLAB nor `gnuplot`, you will be able to complete the labs.
-
-## Get ready for first tutorial
+## 2. Get ready for this tutorial
 
 #### Get the code
 
 Clone this repository inside `$LAB_DIR`:
 
 ```sh
-$ cd $LAB_DIR
+$ cd $ROBOT_CODE/dl-lab
 $ git clone https://www.github.com/vvv-school/tutorial_dl-tuning.git
 ```
 
@@ -55,7 +59,6 @@ $ git clone https://www.github.com/vvv-school/tutorial_dl-tuning.git
 Compile the scripts that are provided with the repository:
 
 ```sh
-$ cd $LAB_DIR
 $ cd tutorial_dl-tuning/scripts/src
 $ mkdir build
 $ cd build
@@ -63,38 +66,47 @@ $ ccmake ../
 $ make
 ```
 
-NOTES: 
+NOTES:
 
 1. you do not have to install this code, `make` is sufficient
 2. check that `CPU_ONLY=ON` and `USE_CUDNN=OFF` if you have not built `caffe` for the GPU (which is the case if you are using the provided VM)
-3. check that `Caffe_DIR` is set to your `caffe` `build` directory (on the VM setup this is `/home/icub/robot-code/caffe/build`)
-4. check that `OpenCV_DIR` points to an `OpenCV` installation (on the VM this is `opt/ros/kinetic/share/OpenCV-3.1.0-dev`) 
+3. check that `Caffe_DIR` is set to your `caffe/build/install` directory (on the VM setup this is `/home/icub/robot-code/caffe/build/install`)
+4. check that `OpenCV_DIR` points to an `OpenCV` installation (on the VM this is `opt/ros/kinetic/share/OpenCV-3.3.1`)
 
-#### Configure the fine-tuning script to run on your laptop:
+## 3. Start the tutorial: run the fine-tuning tester
+
+Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
+
+#### Configure (and understand) the script:
 
 Open the `train_and_test_net_tester.sh` script with a text editor, e.g.:
 
 ```sh
-$ cd $LAB_DIR/tutorial_dl-tuning/id_2objects_caffenet
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
 $ gedit train_and_test_net_tester.sh
 ```
 
-Check that the paths to the code and data are correct for your system. Specifically:
+Look at the file. Can you understand what the different sections are doing?
 
-1. `LAB_DIR` must point to the directory that you created above
-2. `IMAGES_DIR` must point to the directory containing the `iCW` dataset that you downloaded. Be sure that this path ends with a `/` included, e.g. `home/icub/robot-code/datasets/iCW/`
-3. the environment variable `Caffe_ROOT` is used: check that you have defined this variable in your system to point to the directory where you have cloned `caffe` (in the VM setup the variable has already been defined in `~/.bashrc-dev`)
-4. at line 24 the file `bvlc_reference_caffenet.caffemodel` is used: check that after installing `caffe	` you downloaded it, as explained in the provided instructions [here](https://github.com/vvv-school/vvv-school.github.io/blob/master/instructions/how-to-prepare-your-system.md#install-caffe)
-5. the rest of the paths should be ok, if the above variables are correct
+While reading the file, check also that the paths to the code and data are correct for your system. Specifically:
 
-#### Run the fine-tuning script
+1. `LAB_DIR` points to the directory `$ROBOT_CODE/dl-lab`
+2. `IMAGES_DIR` points to the directory of the `iCW` dataset. Be sure that this path ends with a `/` included, e.g. `home/icub/robot-code/datasets/iCW/`.
+3. The `Caffe_ROOT` env variable is used to locate `caffe` (in the VM it is defined in `~/.bashrc-dev`)
+4. At line 24, check that the pre-trained model `bvlc_reference_caffenet.caffemodel` is correctly located
+
+The rest of the paths should be ok if the above are correct.
+
+Look also at the `train_val.prototxt`, `deploy.prototxt` and `solver.prototxt` that are pointed by this file. Can you understand the comments that we added to explain the relevant parts of these files?
+
+#### Run the script
 
 ```sh
-$ cd $LAB_DIR/tutorial_dl-tuning/id_2objects_caffenet
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
 $ ./train_and_test_net_tester.sh
 ```
 
-Now look at the logging messages. The (dummy) training should take less than 5 minutes to complete and you should be able to see something like this:
+Now look at the logging messages. The (tester) training should take less than 5 minutes to complete and you should be able to see something like this:
 
 ```sh
 I0203 22:10:30.673301  3769 caffe.cpp:251] Starting Optimization
@@ -124,4 +136,55 @@ I0203 22:12:03.345948  3769 solver.cpp:322] Optimization Done.
 I0203 22:12:03.345954  3769 caffe.cpp:254] Optimization Done.
 ```
 
-Then you should also be able to see 6 images displayed one after the other. If you read at the very end the message `***** Done! *****` then you are ready for the labs! Let us know if something does not work.
+Then you should also be able to see some images displayed one after the other. If you read at the very end the message `***** Done! *****`, then you are ready for fine-tuning networks on your machine! Let us know if something does not work.
+
+## 4. Complete the tutorial: run fine-tuning
+
+This is the actual training that we are going to run. The procedure is the same that you followed to run the ''tester'' script at point 3. Therefore:
+
+Open the `train_and_test_net.sh` script with a text editor:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
+$ gedit train_and_test_net_tester.sh
+```
+
+and check that everything is set up correctly. All paths should be the same as for `train_and_test_net_tester.sh` except that now:
+
+1. the training protocol is not `all-0-tester` but `all-3` (line 96)
+2. the list of test images is not `test-tester.txt` but `test.txt` (line 75)
+
+Run the script like the previous one:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
+$ ./train_and_test_net.sh
+```
+
+Once the script finishes, look at the produced files:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects/
+$ ls
+```
+The `lmdb_train` and `lmdb_val` folder contain the databases of the train and validation images, while the `mean.binaryproto` is the mean image of the training set.
+
+Look now inside the protocol folder:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects/all-3
+$ ls
+```
+Here you can find:
+
+1. `final.caffemodel`: **these are the weights of the fine-tuned model!**
+2. `caffeINFotrain.txt` and `caffeINFOval.txt`, together with `caffeINFO_loss.png`, `caffeINFO_acc.png` and `caffeINFO_lr.png` are the result of parsing the output log file produced by Caffe (`caffe.INFO`) and contain, respectively in the form of tables or pictures, the train/validation performances achieved during training. Note that this information is produced by Caffe more or less frequently depending on the `display` parameter set in the `solver.prototxt`.
+2. `test_acc.txt`: **accuracy achieved by testing the trained model on the test set** (computed based on the predictions that were also displayed)
+
+## 5. Bonus question
+
+Consider the training protocols that we adopted in the ''tester'' and then in the actual fine-tuning of the network, by comparing the `solver.prototxt` and the `train_val.prototxt` files used in the two cases (folders `all-0-tester` and `all-3`).
+
+Apart from the different number of epochs (2 in the tester and 4 in the other case), which is the other difference between the two?
+
+[**HELP**] Look at the learning rates of the different layers of the network (`base_lr` parameter in the `solver.prototxt` and `lr_mult` layer parameters in the `train_val.prototxt`): How are these set in the two cases? Why do you think in the tester we kept all layers frozen except the very last one, while in the fine-tuning we instead adapted the weights of all layers?
