@@ -2,11 +2,11 @@
 
 Contents:
 
-1. [Get ready for the afternoon](#get_ready_for_the_afternoon)
-2. [Get ready for this tutorial](#get_ready_for_this_tutorial)
-3. [Start the tutorial: run the tester](#start_the_tutorial_run_the_fine_tuning_tester)
-4. [Complete the tutorial: run fine-tuning](#complete_the_tutorial_run_fine_tuning)
-5. [Bonus question](#bonus_question)
+* [Get ready for the afternoon](#get_ready_for_the_afternoon)
+* [Get ready for this tutorial](#get_ready_for_this_tutorial)
+* [Start the tutorial: run the tester](#start_the_tutorial_run_the_fine_tuning_tester)
+* [Complete the tutorial: run fine-tuning](#complete_the_tutorial_run_fine_tuning)
+* [Bonus question](#bonus_question)
 
 ## Get ready for the afternoon
 
