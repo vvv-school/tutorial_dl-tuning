@@ -1,0 +1,85 @@
+# Categories involved in the problem:
+# --> look in the 'iCW' folder to check the available categories
+CATEGORIES: ["mug", "sodabottle"]
+
+# Experiment kind:
+# either 'cat' (obj. categorization) or 'id' (obj. identification)
+EXP_KIND: "id"
+
+# At each level of the 'iCW' hierarchy, we must define
+# one train, one validation and one test set:
+# e.g. in this task we want to learn to discriminate
+# between 2 objects (1 mug and 1 sodabottle)
+# by training on 4 sequences per object
+# and testing on the mixed sequence
+
+# Objects per category:
+# if the experiment is identification, the three sets will be equal
+# (like in this example)
+# in categorization, instead, usually the system is trained
+# on some object instances per category and tested on others
+# (and usually one or two instances are kept for validation)
+# --> look in the 'iCW' folder to check
+# the number of objects per category available (in this case: 10)
+OBJ_PER_CAT:
+  TRAIN: ["1"]
+  VAL: ["1"]
+  TEST: ["1"]
+
+# Transformations per object:
+# --> look in the 'iCW' folder to check
+# the transformations per object available
+TRANSF_PER_OBJ:
+  TRAIN: ["ROT2D", "ROT3D", "SCALE", "TRANSL"]
+  VAL: ["ROT2D", "ROT3D", "SCALE", "TRANSL"]
+  TEST: ["MIX"]
+
+# Days per transformation:
+# there are two sequences, acquired in different days, available
+# you can choose to train on the first one ["1"], or the second one ["2"]
+# or both ["1", "2"] (the same for testing)
+# here we chose day 1
+DAY_PER_TRANSF:
+  TRAIN: ["1"]
+  VAL: ["1"]
+  TEST: ["2"]
+
+# Whether to put a max limit on the number of frames
+# to be sampled (randomly) from each sequence
+# consider that in this case we have roughly 60 to 90 frames per sequence
+LIMIT_FRAMES:
+  TRAIN:
+    ACTIVE: True
+    MAX: 60
+  VAL:
+    ACTIVE: True
+    MAX: 60
+  # differently from training and validation,
+  # the test frames are extracted as contiguous sequences
+  # (like a short video on which to test the system):
+  # you can start the sequence
+  # either from a random or arbitrary frame:
+  # in the first case, STARTING_IMG: -1
+  # in the second case, STARTING_IMG: <number>
+  # MAX is the length of the sequence
+  TEST:
+    ACTIVE: True
+    MAX: 20
+    STARTING_IMG: 1
+
+# Whether to use a fraction of the training set for validation:
+# this flag must be set to true in case you defined equal
+# training and validation sets (like in this example)
+# --> pay attention to disable the flag when you specify
+# training and validation sets as different sets
+# (like usually in categorization problems)
+DIVIDE_TRAINVAL_SET:
+  ACTIVE: True
+  # depending on whether we want to sample
+  # validation frames at constant step or randomly
+  # this field can be either 'random' or 'step'
+  VALIDATION_SPLIT: "random"
+  # the validation fraction will be in (0,1)
+  # NOTE: if validation_split is 'step' then
+  # the sampling step is computed as 1/VALIDATION_PERC
+  VALIDATION_PERC: 0.2

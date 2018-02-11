@@ -77,7 +77,31 @@ NOTES:
 
 Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
 
-#### Configure (and understand) the script:
+#### Generate the lists of train/val/test images
+
+Open the `create_imagesets.py` script with a text editor, e.g.:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning
+$ gedit create_imagesets.py
+```
+
+This script uses the configuration file `imageset_config.yml` (located inside `id_2objects`) to select train/val/test images from the `iCW` dataset and create three corresponding files, containing the list of the selected images.
+
+Look at lines 25-29 and check that the paths are correct (they should, if you are using the VM and followed instructions so far).
+
+Run the script in the following way:
+
+```sh
+$ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning
+$ ./create_imagesets.py
+```
+
+Once done, check that a folder named `images_lists` inside `id_2objects` has been created and contains the `train.txt`, `val.txt`, `test.txt` and `labels.txt`.
+
+[**OPTIONAL**] Look at the content of `imageset_config.yml`: can you understand how we are defining the train/val/test sets? Can you understand whether the generated image lists are correct, based on the configuration file?
+
+#### Configure (and understand) the script
 
 Open the `train_and_test_net_tester.sh` script with a text editor, e.g.:
 
@@ -140,7 +164,7 @@ Then you should also be able to see some images displayed one after the other. I
 
 ## Complete the tutorial: run fine-tuning
 
-This is the actual training that we are going to run. The procedure is the same that you followed to run the ''tester'' script at point 3. Therefore:
+This is the actual training that we are going to run. The procedure is the same that you followed to run the ''tester'' script. This time we do not need to generate the lists of train/val/test images since we are going to use the same. Therefore:
 
 Open the `train_and_test_net.sh` script with a text editor:
 
@@ -149,10 +173,7 @@ $ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
 $ gedit train_and_test_net_tester.sh
 ```
 
-and check that everything is set up correctly. All paths should be the same as for `train_and_test_net_tester.sh` except that now:
-
-1. the training protocol is not `all-0-tester` but `all-3` (line 96)
-2. the list of test images is not `test-tester.txt` but `test.txt` (line 75)
+and check that everything is set up correctly. All paths are the same as for `train_and_test_net_tester.sh` except that now the training protocol is not `all-0-tester` but `all-3` (line 96).
 
 Run the script like the previous one:
 

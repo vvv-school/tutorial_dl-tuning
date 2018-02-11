@@ -72,7 +72,7 @@ FILELIST_TRAIN=${TUTORIAL_DIR}/${EX}/images_lists/train.txt
 echo ${FILELIST_TRAIN}
 FILELIST_VAL=${TUTORIAL_DIR}/${EX}/images_lists/val.txt
 echo ${FILELIST_VAL}
-FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test-tester.txt
+FILELIST_TEST=${TUTORIAL_DIR}/${EX}/images_lists/test.txt
 echo ${FILELIST_TEST}
 LABELS_FILE=${TUTORIAL_DIR}/${EX}/images_lists/labels.txt
 echo ${LABELS_FILE}
@@ -167,7 +167,7 @@ FINAL_MODEL=${TUTORIAL_DIR}/${EX}/${PROTOCOL}/final.caffemodel
 # the string can be either "true" or "false"
 PRINT_PREDICTIONS="true";
 # if the above is true, choose the rate [ms] of visualization
-IMG_DELAY="1000"
+IMG_DELAY="500"
 
 # call the test script (classify_image_list_vvv.cpp)
 ${CLASSIFY_IMAGE_LIST_BIN} ${DEPLOY_FILE} ${FINAL_MODEL} ${BINARYPROTO_MEAN} \
