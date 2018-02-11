@@ -4,10 +4,10 @@
 
 # number of training iterations
 max_iter: 48
-# QUESTION: how did we set this parameter to 44?
+# QUESTION: how did we set this parameter to 48?
 # ANSWER (use it for the assignment):
 # 1. count the number of images in train.txt (384)
-# 2. look inside the file train_val.protxt and chech the size of the mini-batches in train phase (32)
+# 2. look inside the file train_val.prototxt and check the size of the mini-batches in train phase (32)
 # 3. this means that each epoch of the mini-batch gradient descent (an epoch is a pass over all training images)
 #    corresponds to 384/32=12 iterations
 # 4. if we want to train for 4 epochs then we need to set <max_iter> to 4*12=48
@@ -16,8 +16,8 @@ max_iter: 48
 test_iter: 3
 # QUESTION: how did we set this parameter to 3?
 # ANSWER (use it for the assignment):
-# 1. count the number of images in  val.txt (96)
-# 2. look inside the file train_val.protxt and chech the size of the mini-batches in the test (i.e. validation) phase (32)
+# 1. count the number of images in val.txt (96)
+# 2. look inside the file train_val.prototxt and check the size of the mini-batches in the test (i.e. validation) phase (32)
 # 3. this means that a pass over all validation images
 #    corresponds to 96/32=3 iterations
 # 4. if we want (clearly) to perform a single pass over the validation set at each validation step then <test_iter> will be 1*3=3
