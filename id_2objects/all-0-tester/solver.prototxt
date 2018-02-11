@@ -8,7 +8,7 @@ max_iter: 24
 # ANSWER (use it for the assignment):
 # 1. count the number of images in train.txt (384)
 # 2. look inside the file train_val.protxt and chech the size of the mini-batches in train phase (32)
-# 3. this means that each epoch of the mini-batch grandient descent (an epoch is a pass over all training images)
+# 3. this means that each epoch of the mini-batch grandiet descent (an epoch is a pass over all training images)
 #    corresponds to 384/32=12 iterations
 # 4. if we want to train for 2 epochs then we need to set <max_iter> to 2*12=24
 
