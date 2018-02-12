@@ -26,13 +26,12 @@ NOTE: if you want to move the dataset in another folder, move the archive and th
 
 #### Create a folder for the deep learning repositories that you will clone
 
-Create a folder of your choice where you will clone all the tutorials and assignments of this course: we will suppose this is
+Create a folder where you will clone all the tutorials and assignments of this hands on session: in all the code provided, we will suppose this is:
 
 ```sh
-$ cd $ROBOT_CODE
-$ mkdir dl-lab
+$ mkdir $ROBOT_CODE/dl-lab
 ```
-You can create the same if you use the VM, otherwise you will be able to change it the code that will be used.
+We encourage to create the same if you use the VM (but you will be able to change it the code that will be used).
 
 #### Get missing Python packages
 
@@ -99,7 +98,7 @@ $ ./create_imagesets.py
 
 Once done, check that a folder named `images_lists` inside `id_2objects` has been created and contains the `train.txt`, `val.txt`, `test.txt` and `labels.txt`.
 
-[**OPTIONAL**] Look at the content of `imageset_config.yml`: can you understand how we are defining the train/val/test sets? Can you understand whether the generated image lists are correct, based on the configuration file?
+[**NOTE**] Look at the content of `imageset_config.yml`: can you understand how we are defining the train/val/test sets? Can you understand whether the generated image lists are correct, based on the configuration file?
 
 #### Configure (and understand) the script
 
@@ -117,11 +116,11 @@ While reading the file, check also that the paths to the code and data are corre
 1. `LAB_DIR` points to the directory `$ROBOT_CODE/dl-lab`
 2. `IMAGES_DIR` points to the directory of the `iCW` dataset. Be sure that this path ends with a `/` included, e.g. `home/icub/robot-code/datasets/iCW/`.
 3. The `Caffe_ROOT` env variable is used to locate `caffe` (in the VM it is defined in `~/.bashrc-dev`)
-4. At line 24, check that the pre-trained model `bvlc_reference_caffenet.caffemodel` is correctly located
+4. At line 114, check that the pre-trained model `bvlc_reference_caffenet.caffemodel` is correctly located
 
 The rest of the paths should be ok if the above are correct.
 
-Look also at the `train_val.prototxt`, `deploy.prototxt` and `solver.prototxt` that are pointed by this file. Can you understand the comments that we added to explain the relevant parts of these files?
+[**NOTE (IMPORTANT for the ASSIGNMENT)**] Look at the `train_val.prototxt`, `deploy.prototxt` and `solver.prototxt` that are pointed by this file. Can you understand the comments that we added to explain the relevant parts of these files?
 
 #### Run the script
 
@@ -170,7 +169,7 @@ Open the `train_and_test_net.sh` script with a text editor:
 
 ```sh
 $ cd $ROBOT_CODE/dl-lab/tutorial_dl-tuning/id_2objects
-$ gedit train_and_test_net_tester.sh
+$ gedit train_and_test_net.sh
 ```
 
 and check that everything is set up correctly. All paths are the same as for `train_and_test_net_tester.sh` except that now the training protocol is not `all-0-tester` but `all-3` (line 96).
@@ -199,7 +198,7 @@ $ ls
 Here you can find:
 
 1. `final.caffemodel`: **these are the weights of the fine-tuned model!**
-2. `caffeINFotrain.txt` and `caffeINFOval.txt`, together with `caffeINFO_loss.png`, `caffeINFO_acc.png` and `caffeINFO_lr.png` are the result of parsing the output log file produced by Caffe (`caffe.INFO`) and contain, respectively in the form of tables or pictures, the train/validation performances achieved during training. Note that this information is produced by Caffe more or less frequently depending on the `display` parameter set in the `solver.prototxt`.
+2. `caffeINFOtrain.txt` and `caffeINFOval.txt`, together with `caffeINFO_loss.png`, `caffeINFO_acc.png` and `caffeINFO_lr.png` are the result of parsing the output log file produced by Caffe (`caffe.INFO`) and contain, respectively in the form of tables or pictures, the train/validation performances achieved during training. Note that this information is produced by Caffe more or less frequently depending on the `display` parameter set in the `solver.prototxt`.
 2. `test_acc.txt`: **accuracy achieved by testing the trained model on the test set** (computed based on the predictions that were also displayed)
 
 ## Bonus question
