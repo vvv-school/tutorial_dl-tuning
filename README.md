@@ -31,7 +31,7 @@ Create a folder where you will clone all the tutorials and assignments of this h
 ```sh
 $ mkdir $ROBOT_CODE/dl-lab
 ```
-We encourage to create the same if you use the VM (but you will be able to change it the code that will be used).
+We encourage to create the same if you use the VM (but you will be able to change it in the code that will be used).
 
 #### Get missing Python packages
 
@@ -74,7 +74,7 @@ NOTES:
 
 ## Start the tutorial: run the tester
 
-Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs and test the model on a couple of images.
+Since the fine-tuning that we are going to run will take some minutes to complete (10 to 15 minutes, depending on the machine), we first ensure that the full train/test pipeline works on your system by running this ''tester''. This is exactly like the fine-tuning we are going to launch, but runs only for 2 epochs.
 
 #### Generate the lists of train/val/test images
 
