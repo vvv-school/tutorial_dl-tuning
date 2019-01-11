@@ -25,14 +25,13 @@ include_directories(${Caffe_INCLUDE_DIRS})
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-add_definitions(${Caffe_DEFINITIONS})    # ex. -DCPU_ONLY
-
-SET ( CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g" )
+set ( CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g" )
 
 set(folder_source ${PROJECTNAME}.cpp)
 source_group("Source Files" FILES ${folder_source})
 
 add_executable(${PROJECTNAME} ${folder_source})
+target_compile_efinitions(${PROJECTNAME} PRIVATE ${Caffe_DEFINITIONS})
 
 target_link_libraries(${PROJECTNAME} ${OpenCV_LIBRARIES})
 target_link_libraries(${PROJECTNAME} ${Caffe_LIBRARIES})
