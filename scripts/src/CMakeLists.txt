@@ -1,10 +1,9 @@
 # Copyright: (C) 2017 iCub Facility - Istituto Italiano di Tecnologia
 # Authors: Giulia Pasquale
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 3.5)
 
-set(PROJECTNAME classify_image_list_vvv)
-project(${PROJECTNAME})
+project(classify_image_list_vvv)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -27,12 +26,9 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 set ( CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g" )
 
-set(folder_source ${PROJECTNAME}.cpp)
-source_group("Source Files" FILES ${folder_source})
+add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${Caffe_DEFINITIONS})
 
-add_executable(${PROJECTNAME} ${folder_source})
-target_compile_efinitions(${PROJECTNAME} PRIVATE ${Caffe_DEFINITIONS})
-
-target_link_libraries(${PROJECTNAME} ${OpenCV_LIBRARIES})
-target_link_libraries(${PROJECTNAME} ${Caffe_LIBRARIES})
-target_link_libraries(${PROJECTNAME} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Caffe_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
