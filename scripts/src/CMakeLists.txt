@@ -29,6 +29,6 @@ set ( CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g" )
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 target_compile_definitions(${PROJECT_NAME} PRIVATE ${Caffe_DEFINITIONS})
 
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 target_link_libraries(${PROJECT_NAME} ${Caffe_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
